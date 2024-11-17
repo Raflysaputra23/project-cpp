@@ -1,13 +1,13 @@
+#include <string>
 #include "modul/DisplayTextCenter.cpp"
+#include "modul/BackgroundRandom.cpp"
 
 int main() {
+    std::string text[4] = {"Hallo","Rafly","Tisya","Abdul"};
     initscr();
 
-    DisplayTextCenter(60, 10,"Hallo", COLOR_RED, A_BOLD);
-    DisplayTextCenter(60, 11,"Rafly", COLOR_RED);
-    DisplayTextCenter(60, 12,"Abdul", COLOR_RED);
-    DisplayTextCenter(60, 13,"Tisya", COLOR_RED);
-    
+    DisplayTextCenter(text, COLOR_GREEN, A_NORMAL);
+
     getch();
     endwin();
     return 0;
