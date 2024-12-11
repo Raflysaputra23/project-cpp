@@ -205,9 +205,9 @@ void GamePlay() {
     }
 
 	if(menang) {
-		GameOver();
-	} else {
 		Winner();
+	} else {
+		GameOver();
 	}
 
     refresh();

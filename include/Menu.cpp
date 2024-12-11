@@ -57,10 +57,10 @@ int Menu() {
             case 10:
                 clear();
                 if(active == 1) {
-                    GamePlay();
+                    return 1;
                     break;
                 } else if(active == 2) {
-                    return 1;
+                    exit(0);
                     break;
                 }
             break;
@@ -80,6 +80,5 @@ int Menu() {
         }
     } while(key = getch());
     clear();
-    getch();
     endwin();    
 }
