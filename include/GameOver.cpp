@@ -1,6 +1,7 @@
 #include <ncurses/curses.h>
 #include <string>
 #include <windows.h>
+#include "define.h"
 using namespace std;
 
 int size(char xy){
@@ -16,12 +17,8 @@ int size(char xy){
     endwin();
 }
 
-int middle(char xy){
-    if(xy == 'x') return size('x') / 2;
-    if(xy == 'y') return size('y') / 2;
-}
 
-int main(){
+void GameOver(){
     string skull [] = {
 
         "                             .:==++++=-.            ",                            
@@ -57,8 +54,8 @@ int main(){
 
     int panjangJudul = sizeof(over) / sizeof(over[0]);
     int panjangAlien = sizeof(skull) / sizeof(skull[0]);
-    int y = middle('y') - 4;
-    int x = middle('x') - 33;
+    int y = Middle('y') - 4;
+    int x = Middle('x') - 33;
     initscr();
 
     curs_set(0);

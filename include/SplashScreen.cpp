@@ -1,27 +1,13 @@
 #include <ncurses/curses.h>
 #include <string>
 #include <windows.h>
+#include "define.h"
 using namespace std;
 
-int size(char xy){
-    initscr();
 
-    int sizeX;
-    int sizeY;
-    getmaxyx(stdscr, sizeY, sizeX);
 
-    if(xy == 'x'||xy == 'X') return sizeX;
-    if(xy == 'y'||xy == 'X') return sizeY;
 
-    endwin();
-}
-
-int middle(char xy){
-    if(xy == 'x') return size('x') / 2;
-    if(xy == 'y') return size('y') / 2;
-}
-
-int main(){
+void SplashScreen(){
     string alien [] = {
         "'^^^......`^^^",
         "'^```^^^^`'`^^",
@@ -47,8 +33,8 @@ int main(){
 
     int panjangJudul = sizeof(judul) / sizeof(judul[0]);
     int panjangAlien = sizeof(alien) / sizeof(alien[0]);
-    int y = middle('y') - 4;
-    int x = middle('x') - 33;
+    int y = Middle('y') - 4;
+    int x = Middle('x') - 33;
     initscr();
 
     curs_set(0);

@@ -65,7 +65,7 @@ void penghapus(){
     }
 }
 
-void loading_awal(){
+void Loading(){
     initscr();
     curs_set(0);
     start_color();
