@@ -60,7 +60,7 @@ int GameOver() {
                     GamePlay();
                     break;
                 } else if(active == 2) {
-                    return 1;
+                    exit(0);
                     break;
                 }
             break;

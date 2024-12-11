@@ -6,9 +6,6 @@
 #include <windows.h>
 #include <unistd.h>
 
-#define Sleep(ms) Sleep(ms * 10)
-
-
 void Pesawat(int pesawatx, int pesawaty) {
 	std::string pesawat[3] = {	 "  _</|\\>_ ",
 							 " /_(_|_)_\\ ",
@@ -78,7 +75,6 @@ void GamePlay() {
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
-    timeout(50);
 
 	bool menang = false;
 	bool sleep = true;
@@ -138,7 +134,7 @@ void GamePlay() {
 
         Pesawat(pesawatx, pesawaty);
 		if(sleep) {
-			Sleep(200);
+			Sleep(2000);
 			sleep = false;
 		}
         GerakMusuh(jumlahMusuh, musuhAktif, musuhX, musuhY);
@@ -190,7 +186,7 @@ void GamePlay() {
         }
 
         refresh();
-        Sleep(10);
+        Sleep(100);
 
 		for (int i = 0; i < jumlahMusuh; i++) {
 			if (!musuhAktif[i]) {
