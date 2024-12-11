@@ -33,8 +33,8 @@ void SplashScreen(){
 
     int panjangJudul = sizeof(judul) / sizeof(judul[0]);
     int panjangAlien = sizeof(alien) / sizeof(alien[0]);
-    int y = Middle('y') - 4;
-    int x = Middle('x') - 33;
+    int y = Koordinat('y', "middle") - 4;
+    int x = Koordinat('x', "middle") - 33;
     initscr();
 
     curs_set(0);

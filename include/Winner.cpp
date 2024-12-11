@@ -7,7 +7,7 @@
 
 
 
-int Menu() {
+int Winner() {
     initscr();
     start_color();
     noecho();
@@ -23,7 +23,7 @@ int Menu() {
     };
 
     std::string menu [2] = {
-        "Start Game",
+        "Restart Game",
         "Exit",
     };
 
@@ -79,6 +79,7 @@ int Menu() {
             }
         }
     } while(key = getch());
+
     clear();
     getch();
     endwin();    

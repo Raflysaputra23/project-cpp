@@ -1,131 +1,86 @@
-#include <ncurses/curses.h>
-#include <string>
-#include <windows.h>
 #include "define.h"
-using namespace std;
+#include <string>
+#include <cstdlib>
+#include <windows.h>
+#include <ncurses/curses.h>
 
-int size(char xy){
+
+
+
+int GameOver() {
     initscr();
+    start_color();
+    noecho();
+    init_pair(1, COLOR_WHITE, COLOR_BLUE);
+    init_pair(2, COLOR_WHITE, COLOR_RED);
 
-    int sizeX;
-    int sizeY;
-    getmaxyx(stdscr, sizeY, sizeX);
-
-    if(xy == 'x'||xy == 'X') return sizeX;
-    if(xy == 'y'||xy == 'X') return sizeY;
-
-    endwin();
-}
-
-
-void GameOver(){
-    string skull [] = {
-
-        "                             .:==++++=-.            ",                            
-        "                          :=*############+-         ",                           
-        "                        .:##################:.      ",                             
-        "                       .+####################*-     ",                        
-        "                       -#####################+      ",                    
-        "                      -#######################+     ",                  
-        "                      #######*#########**######:    ",             
-        "                     .######= *########: *#####=    ",              
-        "                      .######-.+########..+#####-   ",              
-        "                      *########################.    ",            
-        "                       .*######################-    ",           
-        "                        +####################-      ",        
-        "                          :###*=*#+.-##++###=       ",             
-        "                          *##. :#= .#*  *##.        ",       
-        "                           *##. :#= .#*  *##.       ",      
-        "                          .::   :.  ::  :::         ",
-        
-
-    };
-
-    string over [] = {
-        " __ _  __ _  _ __   ___   ___ __ __ ___  _ _ ",
-        "/ _` |/ _` || '  \\ / -_) / _ \\ V // -_)| '_|",
-        "\\__, |\\__,_||_|_|_|\\___| \\___/ \\_/ \\___||_|  ",
-        "|___/                                       ",
-        
+    std::string judul [] = {
+        " _   _    _    ___   ___  _  _ __   __   _    ___   ___  ___  ___",
+        "| | | |  /_\\  | _ \\ |_ _|| \\| |\\ \\ / /  /_\\  |   \\ | __|| _ \\/ __|",
+        "| |_| | / _ \\ |  _/  | | | .` | \\ V /  / _ \\ | |) || _| |   /\\__ \\ " ,
+        " \\___/ /_/ \\_\\|_|   |___||_|\\_|  \\_/  /_/ \\_\\|___/ |___||_|_\\|___/",
                                                                  
     };
 
-    string penghapus = " ";
+    std::string menu [2] = {
+        "Restart Game",
+        "Exit",
+    };
 
-    int panjangJudul = sizeof(over) / sizeof(over[0]);
-    int panjangAlien = sizeof(skull) / sizeof(skull[0]);
-    int y = Middle('y') - 4;
-    int x = Middle('x') - 33;
-    initscr();
+    int panjangJudul = sizeof(judul) / sizeof(judul[0]);
+    int panjangMenu1 = sizeof(menu) / sizeof(menu[0]);
+    int panjangMenu2 = sizeof(menu) / sizeof(menu[1]);
+    int y = Koordinat('y', "middle");
+    int x = Koordinat('x', "middle");
 
-    curs_set(0);
-    noecho();
-    keypad(stdscr, TRUE);
-    nodelay(stdscr, TRUE);
-
-    // for (int i = 0; i < 9; i++){
-    //     mvprintw (y + i - 6, x + 7, "%s", skull[i].c_str());
-    //     Sleep(50);
-    //     refresh();
-    // }
-
-    for (int i = 0; i < 16; i++){
-        mvprintw (y + i - 8, x + 2, "%s", skull[i].c_str());
-        Sleep(50);
+    for(int i = 0; i < panjangJudul; i++) {
+        mvprintw((y / 2) + i, (x / panjangJudul) + 15, "%s" ,judul[i].c_str());
         refresh();
-    }
-
-    // for (int i = 0; i < 9; i++){
-    //     mvprintw (y + i - 6, x + 47, "%s", skull[i].c_str());
-    //     Sleep(50);
-    //     refresh();
-    // }
-
-    for (int i = 0; i < 4; i++){
-        mvprintw (y + i + 13, x + 15, "%s", over[i].c_str());
         Sleep(200);
-        refresh();
-    }
-
-    Sleep(2000);
-
-    for(int i = 0; i < 70; i++){
-        mvprintw (y - 9, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 8, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 7, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 6, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 5, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 3, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 2, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 1, x + i, "%s", penghapus.c_str());
-        mvprintw (y, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 1, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 2, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 3, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 5, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 6, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 7, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 8, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 9, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 10, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 11, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 12, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 13, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 14, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 15, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 16, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 17, x + i, "%s", penghapus.c_str());
-        Sleep(10);
-        refresh();
     }
 
 
+    int key;
+    int active = 1;
+    curs_set(0);
+    do {
+        keypad(stdscr, true);
+        switch (key) {
+            case KEY_UP:
+                if(active == 1) active = 3;
+                active--;
+            break;
+            case KEY_DOWN:
+                active++;
+                if(active == 3) active = 1;
+            break;
+            case 10:
+                clear();
+                if(active == 1) {
+                    GamePlay();
+                    break;
+                } else if(active == 2) {
+                    return 1;
+                    break;
+                }
+            break;
+        }
 
+        for(int i = 0; i < 2; i++) {
+            std::string huruf = menu[i];
+            if(active == (i + 1)) {
+                attron(COLOR_PAIR(i + 1));
+                mvprintw((y + 3) + i, x - (huruf.length() / 2), "%s", huruf.c_str());
+                attroff(COLOR_PAIR(i + 1));
+            } else {
+                attron(COLOR_PAIR(3));
+                mvprintw((y + 3) + i, x - (huruf.length() / 2), "%s", huruf.c_str());
+                attroff(COLOR_PAIR(3));
+            }
+        }
+    } while(key = getch());
+
+    clear();
     getch();
-    endwin();
+    endwin();    
 }
-
-
