@@ -37,7 +37,7 @@ void GerakMusuh(int jumlahMusuh, bool musuhAktif[], int musuhX[], int musuhY[], 
                 musuhX[i] = rand() % Koordinat('x', "none") - 10;
             }
             	mvprintw(musuhY[i] + 2, musuhX[i], "\\_/");
-        } else if(musuhTersisa > 0) {
+        } else if(musuhTersisa >= jumlahMusuh) {
 			musuhX[i] = rand() % Koordinat('x', "none") - 10;
 			musuhY[i] = 0;
 			musuhAktif[i] = true;
@@ -86,8 +86,7 @@ void GamePlay() {
 
 	int maxPeluru = 1;
 	int jumlahMusuh = 10;
-	int totalMusuh = 50;
-	int musuhTersisa = totalMusuh;
+	int totalMusuh = 12;
 	int peluruMusuhMax = jumlahMusuh;
 
 	int pesawatx, pesawaty, darah = 100, kill = 0, peluru = maxPeluru, musuh = totalMusuh;
@@ -144,7 +143,7 @@ void GamePlay() {
 			Sleep(2000);
 			sleep = false;
 		}
-        GerakMusuh(jumlahMusuh, musuhAktif, musuhX, musuhY, musuhTersisa);
+        GerakMusuh(jumlahMusuh, musuhAktif, musuhX, musuhY, musuh);
         MusuhMenembak(jumlahMusuh, musuhAktif, musuhX, musuhY, peluruMusuhMax, peluruMusuhAktif, peluruMusuhX, peluruMusuhY);
         GerakPeluruMusuh(peluruMusuhMax, peluruMusuhAktif, peluruMusuhX, peluruMusuhY);
 		

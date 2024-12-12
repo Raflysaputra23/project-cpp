@@ -4,41 +4,76 @@
 #include <windows.h>
 #include <ncurses/curses.h>
 
+void trophi(){
+    std::string judul [] = {
+        "      -++++++++++++++++++++++=               ",        
+        " ========---------==--------=====-           ",     
+        " +.   :==--------==+=-------    :+           ",     
+        "--   .==---+++===+++==-----    --            ",     
+        "  +:   ==--==+++++++++++=--:   :=            ",     
+        "  .=-  :=-===+++++++++==---.  -=.            ",     
+        "     :=-.==--=+++++++==-----.-=:             ",     
+        "       =:-=--=++++++=---:-=+                 ",     
+        "       .:==--======++=----:.                 ",     
+        "           -=-----====---:                   ",       
+        "       .:==--======++=----:.                 ",     
+        "           -=-----====---:                   ",       
+        "           :===----==-:===:                  ",    
+        "              ..++==..                       ",       
+        "               +++=                          ",      
+        "      ::::::::::+++=::::::::::               ",       
+        "     :-++++++++++++++++++++-:                ",      
+        "       .====================.                ",       
+        "     .:+===================:.                ",      
+        "      ------------------------               ",
+                                                                 
+    };
 
+    for(int i = 0; i < 19; i++) {
+        mvprintw(Koordinat('y', "middle") - 15 + i, Koordinat('x', "middle") - 16, "%s" ,judul[i].c_str());
+        refresh();
+    }
+}
 
+void winnerTeks() {
+    std::string teks [] = {
+"              _                               ",
+"             (_)                              ",
+"   __      __ _  _ __   _ __    ___  _ __     ",
+"   \\ \\ /\\ / /| || '_ \\ | '_ \\  / _ \\| '__|     ",
+"    \\ V  V / | || | | || | | ||  __/| |       ",
+"     \\_/\\_/  |_||_| |_||_| |_| \\___||_|        ",
+};
 
+    for(int i = 0; i < 6; i++) {
+        mvprintw(Koordinat('y', "middle") + 4 + i, Koordinat('x', "middle") - 21, "%s" ,teks[i].c_str());
+        refresh();
+
+    };
+
+}
 int Winner() {
+    clear();
     initscr();
     start_color();
     noecho();
     init_pair(1, COLOR_WHITE, COLOR_BLUE);
     init_pair(2, COLOR_WHITE, COLOR_RED);
 
-    std::string judul [] = {
-        " _   _    _    ___   ___  _  _ __   __   _    ___   ___  ___  ___",
-        "| | | |  /_\\  | _ \\ |_ _|| \\| |\\ \\ / /  /_\\  |   \\ | __|| _ \\/ __|",
-        "| |_| | / _ \\ |  _/  | | | .` | \\ V /  / _ \\ | |) || _| |   /\\__ \\ " ,
-        " \\___/ /_/ \\_\\|_|   |___||_|\\_|  \\_/  /_/ \\_\\|___/ |___||_|_\\|___/",
-                                                                 
-    };
+    trophi();
+    Sleep(1000);
+    winnerTeks();
+    Sleep(1000);
 
     std::string menu [2] = {
         "Restart Game",
         "Exit",
     };
 
-    int panjangJudul = sizeof(judul) / sizeof(judul[0]);
     int panjangMenu1 = sizeof(menu) / sizeof(menu[0]);
     int panjangMenu2 = sizeof(menu) / sizeof(menu[1]);
-    int y = Koordinat('y', "middle");
-    int x = Koordinat('x', "middle");
-
-    for(int i = 0; i < panjangJudul; i++) {
-        mvprintw((y / 2) + i, (x / panjangJudul) + 15, "%s" ,judul[i].c_str());
-        refresh();
-        Sleep(200);
-    }
-
+    int y = Koordinat('y', "middle") + 8;
+    int x = Koordinat('x', "middle") + 2;
 
     int key;
     int active = 1;

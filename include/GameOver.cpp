@@ -59,6 +59,7 @@ void GameOver() {
     skull();
     Sleep(1000);
     gameOverTeks();
+    Sleep(1000);
 
     std::string menu [2] = {
         "Restart Game",

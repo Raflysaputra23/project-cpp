@@ -3,7 +3,7 @@ int main() {
     // SplashScreen();
     // Loading();
     // LoginRegister();
-    Menu();
+    // Menu();
     GamePlay();
     return 0;
 }
