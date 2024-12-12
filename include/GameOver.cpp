@@ -4,41 +4,72 @@
 #include <windows.h>
 #include <ncurses/curses.h>
 
+void skull(){
+    std::string skull [] = {
 
+        "        .:==++++=-.            ",                            
+        "     :=*############+-         ",                           
+        "   .:##################:.      ",                             
+        "  .+####################*-     ",                        
+        "  -######################+-      ",                    
+        " -########################+     ",                  
+        " #######*#########**######:    ",             
+        ".######= *########: *#####=    ",              
+        ".######-.+########..+#####-   ",              
+        " *########################.    ",            
+        " .*######################-    ",           
+        "   +####################-      ",        
+        "     :###*=*#+.-##++###=       ",             
+        "     *##. :#= .#*  *##.        ",       
+        "     *##. :#= .#*  *##.       ",      
+        "      .::   :.  ::  :::         ",
+        
 
+    };
 
-int GameOver() {
+    for(int i = 0; i < 16; i++){
+        mvprintw(Koordinat('y', "middle") + i - 15, Koordinat('x', "middle") -15, "%s", skull[i].c_str());
+        refresh();
+    }
+}
+
+void gameOverTeks(){
+    std::string over [] = {
+        " __ _  __ _  _ __   ___   ___ __ __ ___  _ _ ",
+        "/ _` |/ _` || '  \\ / -_) / _ \\\\ V // -_)| '_|",
+        "\\__, |\\__,_||_|_|_|\\___| \\___/ \\_/ \\___||_|  ",
+        "|___/                                       ",
+                                                                 
+    };
+
+    for(int i = 0; i < 4; i++){
+        mvprintw(Koordinat('y', "middle") + i + 1, Koordinat('x', "middle") - 23, "%s", over[i].c_str());
+        refresh();
+    }
+}
+
+void GameOver() {
     initscr();
+    clear();
     start_color();
     noecho();
     init_pair(1, COLOR_WHITE, COLOR_BLUE);
     init_pair(2, COLOR_WHITE, COLOR_RED);
 
-    std::string judul [] = {
-        " _   _    _    ___   ___  _  _ __   __   _    ___   ___  ___  ___",
-        "| | | |  /_\\  | _ \\ |_ _|| \\| |\\ \\ / /  /_\\  |   \\ | __|| _ \\/ __|",
-        "| |_| | / _ \\ |  _/  | | | .` | \\ V /  / _ \\ | |) || _| |   /\\__ \\ " ,
-        " \\___/ /_/ \\_\\|_|   |___||_|\\_|  \\_/  /_/ \\_\\|___/ |___||_|_\\|___/",
-                                                                 
-    };
+    skull();
+    Sleep(1000);
+    gameOverTeks();
+    Sleep(1000);
 
     std::string menu [2] = {
         "Restart Game",
         "Exit",
     };
 
-    int panjangJudul = sizeof(judul) / sizeof(judul[0]);
     int panjangMenu1 = sizeof(menu) / sizeof(menu[0]);
     int panjangMenu2 = sizeof(menu) / sizeof(menu[1]);
-    int y = Koordinat('y', "middle");
+    int y = Koordinat('y', "middle") + 4;
     int x = Koordinat('x', "middle");
-
-    for(int i = 0; i < panjangJudul; i++) {
-        mvprintw((y / 2) + i, (x / panjangJudul) + 15, "%s" ,judul[i].c_str());
-        refresh();
-        Sleep(200);
-    }
-
 
     int key;
     int active = 1;

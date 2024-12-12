@@ -3,8 +3,9 @@
 #include <string>
 void SplashScreen();
 void Loading();
+void LoginRegister();
+void GameOver();
 int Menu();
-int GameOver();
 int Winner();
 int Koordinat(char xy, std::string tipe);
 int Size(char xy);
