@@ -29,15 +29,19 @@ void TembakkanPeluru(int maxPeluru, int pesawatx, int pesawaty, bool peluruAktif
 }
 
 
-void GerakMusuh(int jumlahMusuh, bool musuhAktif[], int musuhX[], int musuhY[]) {
+void GerakMusuh(int jumlahMusuh, bool musuhAktif[], int musuhX[], int musuhY[], int musuhTersisa) {
     for (int i = 0; i < jumlahMusuh; i++) {
         if (musuhAktif[i]) {
             if (musuhY[i] >= Koordinat('y', "none")) {
                 musuhY[i] = 0;
                 musuhX[i] = rand() % Koordinat('x', "none") - 10;
             }
-            	mvprintw(musuhY[i]++, musuhX[i], "\\_/");
-        }
+            	mvprintw(musuhY[i] + 2, musuhX[i], "\\_/");
+        } else if(musuhTersisa > 0) {
+			musuhX[i] = rand() % Koordinat('x', "none") - 10;
+			musuhY[i] = 0;
+			musuhAktif[i] = true;
+		}
     }
 }
 
@@ -58,12 +62,12 @@ void MusuhMenembak(int jumlahMusuh, bool musuhAktif[], int musuhX[], int musuhY[
 
 void GerakPeluruMusuh(int peluruMusuhMax, bool peluruMusuhAktif[], int peluruMusuhX[], int peluruMusuhY[]) {
     for (int i = 0; i < peluruMusuhMax; i++) {
-        if (peluruMusuhAktif[i]) {
+        if (peluruMusuhAktif[i] <= 10) {
 			peluruMusuhY[i]++;
             if (peluruMusuhY[i] >= Koordinat('y', "none")) {
                 peluruMusuhAktif[i] = false;
             } else {
-                mvprintw(peluruMusuhY[i], peluruMusuhX[i] + 1, "|");
+                mvprintw(peluruMusuhY[i] + 2, peluruMusuhX[i] + 1, "|");
             }
         }
     }
@@ -74,16 +78,19 @@ void GamePlay() {
     initscr();
     noecho();
     curs_set(0);
+	nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
 
 	bool menang = false;
 	bool sleep = true;
 
 	int maxPeluru = 1;
-	int jumlahMusuh = 5;
-	int peluruMusuhMax = 5;
+	int jumlahMusuh = 10;
+	int totalMusuh = 50;
+	int musuhTersisa = totalMusuh;
+	int peluruMusuhMax = jumlahMusuh;
 
-	int pesawatx, pesawaty, darah = 100, kill = 0, peluru = maxPeluru, musuh = jumlahMusuh;
+	int pesawatx, pesawaty, darah = 100, kill = 0, peluru = maxPeluru, musuh = totalMusuh;
 	int peluruX[maxPeluru], peluruY[maxPeluru];
 	bool peluruAktif[maxPeluru];
 	int peluruKe = maxPeluru;
@@ -116,10 +123,10 @@ void GamePlay() {
 
     while (darah > 0) {
 		clear();
-		mvprintw(0, 0, "Darah: %d", darah);
-		mvprintw(1, 0, "Kill: %d", kill);
-		mvprintw(2, 0, "Peluru: %d", peluru);
-		mvprintw(3, 0, "Musuh: %d", musuh);
+		mvprintw(3, 0, "Darah: %d", darah);
+		mvprintw(4, 0, "Kill: %d", kill);
+		mvprintw(5, 0, "Peluru: %d", peluru);
+		mvprintw(6, 0, "Musuh: %d", musuh);
 
         for (int i = 0; i < maxPeluru; i++) {
 			if (peluruAktif[i]) {
@@ -137,7 +144,7 @@ void GamePlay() {
 			Sleep(2000);
 			sleep = false;
 		}
-        GerakMusuh(jumlahMusuh, musuhAktif, musuhX, musuhY);
+        GerakMusuh(jumlahMusuh, musuhAktif, musuhX, musuhY, musuhTersisa);
         MusuhMenembak(jumlahMusuh, musuhAktif, musuhX, musuhY, peluruMusuhMax, peluruMusuhAktif, peluruMusuhX, peluruMusuhY);
         GerakPeluruMusuh(peluruMusuhMax, peluruMusuhAktif, peluruMusuhX, peluruMusuhY);
 		
@@ -159,7 +166,7 @@ void GamePlay() {
 		}
 
 		for (int i = 0; i < peluruMusuhMax; i++) {
-			if (peluruMusuhAktif[i] && peluruMusuhX[i] >= pesawatx - 4 && peluruMusuhX[i] <= pesawatx + 4 && peluruMusuhY[i] >= pesawaty && peluruMusuhY[i] <= pesawaty) {
+			if (peluruMusuhAktif[i] && peluruMusuhX[i] >= pesawatx && peluruMusuhX[i] <= pesawatx + 9 && peluruMusuhY[i] >= pesawaty && peluruMusuhY[i] <= pesawaty) {
 				darah -= 10;
 				peluruMusuhAktif[i] = false;
 				break;
