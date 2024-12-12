@@ -36,6 +36,7 @@ void GerakMusuh(int jumlahMusuh, bool musuhAktif[], int musuhX[], int musuhY[], 
                 musuhY[i] = 0;
                 musuhX[i] = rand() % Koordinat('x', "none") - 10;
             }
+			if(musuhX[i] < 0) musuhX[i] *= -1;
             	mvprintw(musuhY[i] + 2, musuhX[i], "\\_/");
         } else if(musuhTersisa >= jumlahMusuh) {
 			musuhX[i] = rand() % Koordinat('x', "none") - 10;
