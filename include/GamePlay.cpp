@@ -77,9 +77,7 @@ void GerakPeluruMusuh(int peluruMusuhMax, bool peluruMusuhAktif[], int peluruMus
 void GamePlay() {
     srand(time(0));
     initscr();
-    noecho();
     curs_set(0);
-	nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
 
 	bool menang = false;
