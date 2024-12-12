@@ -2,6 +2,7 @@
 int main() {
     SplashScreen();
     Loading();
+    LoginRegister();
     Menu();
     GamePlay();
     return 0;

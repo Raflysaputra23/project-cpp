@@ -8,6 +8,10 @@ using namespace std;
 
 
 void SplashScreen(){
+    initscr();
+    noecho();
+    curs_set(0);
+    
     string alien [] = {
         "'^^^......`^^^",
         "'^```^^^^`'`^^",

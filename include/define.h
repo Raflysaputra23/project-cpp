@@ -3,6 +3,7 @@
 #include <string>
 void SplashScreen();
 void Loading();
+void LoginRegister();
 int Menu();
 int GameOver();
 int Winner();
