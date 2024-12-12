@@ -56,26 +56,40 @@ int main(){
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
 
+    start_color();
+    init_pair(1, COLOR_CYAN, COLOR_BLACK);
+    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(3, COLOR_GREEN, COLOR_BLACK);
+    init_pair(4, COLOR_RED, COLOR_BLACK);
+
     for (int i = 0; i < 9; i++){
+        attron(COLOR_PAIR(3));
         mvprintw (y + i - 6, x + 7, "%s", alien[i].c_str());
+        attroff(COLOR_PAIR(3));
         Sleep(50);
         refresh();
     }
 
     for (int i = 0; i < 9; i++){
+        attron(COLOR_PAIR(2));
         mvprintw (y + i - 6, x + 27, "%s", alien[i].c_str());
+        attroff(COLOR_PAIR(2));
         Sleep(50);
         refresh();
     }
 
     for (int i = 0; i < 9; i++){
+        attron(COLOR_PAIR(4));
         mvprintw (y + i - 6, x + 47, "%s", alien[i].c_str());
+        attroff(COLOR_PAIR(4));
         Sleep(50);
         refresh();
     }
 
     for (int i = 0; i < 4; i++){
+        attron(COLOR_PAIR(1));
         mvprintw (y + i + 4, x, "%s", judul[i].c_str());
+        attroff(COLOR_PAIR(1));
         Sleep(200);
         refresh();
     }

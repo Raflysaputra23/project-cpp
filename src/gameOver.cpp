@@ -28,13 +28,13 @@ int main(){
         "                          :=*############+-         ",                           
         "                        .:##################:.      ",                             
         "                       .+####################*-     ",                        
-        "                       -#####################+      ",                    
-        "                      -#######################+     ",                  
+        "                       -######################+-      ",                    
+        "                      -########################+     ",                  
         "                      #######*#########**######:    ",             
         "                     .######= *########: *#####=    ",              
-        "                      .######-.+########..+#####-   ",              
+        "                     .######-.+########..+#####-   ",              
         "                      *########################.    ",            
-        "                       .*######################-    ",           
+        "                      .*######################-    ",           
         "                        +####################-      ",        
         "                          :###*=*#+.-##++###=       ",             
         "                          *##. :#= .#*  *##.        ",       
@@ -46,14 +46,13 @@ int main(){
 
     string over [] = {
         " __ _  __ _  _ __   ___   ___ __ __ ___  _ _ ",
-        "/ _` |/ _` || '  \\ / -_) / _ \\ V // -_)| '_|",
+        "/ _` |/ _` || '  \\ / -_) / _ \\\\ V // -_)| '_|",
         "\\__, |\\__,_||_|_|_|\\___| \\___/ \\_/ \\___||_|  ",
         "|___/                                       ",
         
                                                                  
     };
 
-    string penghapus = " ";
 
     int panjangJudul = sizeof(over) / sizeof(over[0]);
     int panjangAlien = sizeof(skull) / sizeof(skull[0]);
@@ -66,66 +65,41 @@ int main(){
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
 
-    // for (int i = 0; i < 9; i++){
-    //     mvprintw (y + i - 6, x + 7, "%s", skull[i].c_str());
-    //     Sleep(50);
-    //     refresh();
-    // }
+    start_color();
+    init_pair(1, COLOR_CYAN, COLOR_BLACK);
+    init_pair(2, COLOR_RED, COLOR_BLACK);
 
-    for (int i = 0; i < 16; i++){
-        mvprintw (y + i - 8, x + 2, "%s", skull[i].c_str());
+        attron(COLOR_PAIR(2)); 
+        mvprintw (y + 0 - 8, x + 2, "%s", skull[0].c_str());
+        mvprintw (y + 1 - 8, x + 2, "%s", skull[1].c_str());
+        mvprintw (y + 2 - 8, x + 2, "%s", skull[2].c_str());
+        mvprintw (y + 3 - 8, x + 2, "%s", skull[3].c_str());
+        mvprintw (y + 4 - 8, x + 2, "%s", skull[4].c_str());
+        mvprintw (y + 5 - 8, x + 2, "%s", skull[5].c_str());
+        mvprintw (y + 6 - 8, x + 2, "%s", skull[6].c_str());
+        mvprintw (y + 7 - 8, x + 2, "%s", skull[7].c_str());
+        mvprintw (y + 8 - 8, x + 2, "%s", skull[8].c_str());
+        mvprintw (y + 9 - 8, x + 2, "%s", skull[9].c_str());
+        mvprintw (y + 10 - 8, x + 2, "%s", skull[10].c_str());
+        mvprintw (y + 11 - 8, x + 2, "%s", skull[11].c_str());
+        mvprintw (y + 12 - 8, x + 2, "%s", skull[12].c_str());
+        mvprintw (y + 13 - 8, x + 2, "%s", skull[13].c_str());
+        mvprintw (y + 14 - 8, x + 2, "%s", skull[14].c_str());
+        mvprintw (y + 15 - 8, x + 2, "%s", skull[15].c_str());        
+        attroff(COLOR_PAIR(2));
+
         Sleep(50);
         refresh();
-    }
 
-    // for (int i = 0; i < 9; i++){
-    //     mvprintw (y + i - 6, x + 47, "%s", skull[i].c_str());
-    //     Sleep(50);
-    //     refresh();
-    // }
-
-    for (int i = 0; i < 4; i++){
-        mvprintw (y + i + 13, x + 15, "%s", over[i].c_str());
-        Sleep(200);
+        attron(COLOR_PAIR(1));
+        mvprintw (y + 0 + 13, x + 15, "%s", over[0].c_str());
+        mvprintw (y + 1 + 13, x + 15, "%s", over[1].c_str());
+        mvprintw (y + 2 + 13, x + 15, "%s", over[2].c_str());    
+        mvprintw (y + 3 + 13, x + 15, "%s", over[3].c_str());
+        attroff(COLOR_PAIR(1));
         refresh();
-    }
 
-    Sleep(2000);
-
-    for(int i = 0; i < 70; i++){
-        mvprintw (y - 9, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 8, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 7, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 6, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 5, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 3, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 2, x + i, "%s", penghapus.c_str());
-        mvprintw (y - 1, x + i, "%s", penghapus.c_str());
-        mvprintw (y, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 1, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 2, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 3, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 4, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 5, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 6, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 7, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 8, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 9, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 10, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 11, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 12, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 13, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 14, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 15, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 16, x + i, "%s", penghapus.c_str());
-        mvprintw (y + 17, x + i, "%s", penghapus.c_str());
-        Sleep(10);
-        refresh();
-    }
-
-
+    Sleep(3000);
 
     getch();
     endwin();
